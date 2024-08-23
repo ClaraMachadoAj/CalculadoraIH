@@ -7,8 +7,15 @@ Decimal para Base 8: iniciando - 21:34
 Decipal para base 16: iniciando - 21:40
                       finalizado (não conferido) - 21:41
 Códig BCD: iniciando - 21:42
-           finalizado (não conferido) - 22:05*/
+           finalizado (não conferido) - 22:05
+           
+23/08
+Complemento a 2: iniciando - 8:11
+                 finalizado (não conferido) - 8:42
+
+*/
 #include <stdio.h>
+#include <stdlib.h>
 
 void toBinary(int num){
   printf("Base 10 para Base 2:\n");
@@ -79,10 +86,57 @@ void toBCD(num){
     }
     printf("\n");
     num = num / 10;
-    printf("Novo valor de n = %d\n", num);
+    printf("Novo valor de n = %d\n", n);
   }
 }
 
+void toComplement2(int num) {
+  printf("Base 10 para Base 2 com sinal (16 bits):\n");
+
+  if (num >= 0){
+    toBinary(num);
+  }
+  else {
+    printf("Número negativo detectado: %d\n", num);
+    num = abs(num);
+    int binary[16];
+    int contDiv = 0;
+    while(num > 0){
+      binary[contDiv] = num % 2;
+      printf("Passo %d: %d %% 2 = %d (resto)\n", contDiv+1, num, binary[contDiv]);
+      num = num / 2;
+      printf("Novo valor do número sendo convertido = %d\n", num);
+      contDiv++;
+    }
+
+    //Complemento a 1
+    for (int cont = 0; cont < 16; cont++){
+      if (binary[cont] == 0){
+        binary[cont] = 1;
+      }
+      else {
+        binary[cont] = 0;
+      }
+      printf("Bit %d: %d\n", cont, binary[cont]);
+    }
+
+    printf("Adicionando 1 ao complemento a 1:\n");
+    int carry = 1;
+    for (int cont = 0; cont < 16; cont++) {
+        int sum = binary[cont] + carry;
+        binary[cont] = sum % 2;
+        carry = sum / 2;
+        printf("Bit %d: %d (com carry %d)\n", cont, binary[cont], carry);
+    }
+
+    printf("Resultado em complemento a 2: ");
+    for (int cont = 15; cont >= 0; cont--) {
+        printf("%d", binary[cont]);
+    }
+    printf("\n");
+    
+  }
+}
 int main(void) {
   printf("Hello World\n");
   return 0;
