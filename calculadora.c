@@ -16,7 +16,7 @@ Complemento a 2: iniciando - 8:11
 Terceira questão: iniciando - 10:44 
 
 29/08 
-                  finalizando - 21:00
+                  finalizando e conferindo tudo - 21:00
 
 */
 #include <stdio.h>
