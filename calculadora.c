@@ -1,4 +1,5 @@
 /*
+Link: https://github.com/ClaraMachadoAj/CalculadoraIH
 22/08
 Inciando: 21:23 
 Decimal para Base 2: finalizado (não conferido) - 21:32
